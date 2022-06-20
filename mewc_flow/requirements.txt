@@ -1,0 +1,15 @@
+humanfriendly
+jsonpickle
+matplotlib
+numpy
+pandas
+piexif
+pillow
+pyyaml
+requests
+statistics
+tensorflow_addons
+tqdm
+
+
+
