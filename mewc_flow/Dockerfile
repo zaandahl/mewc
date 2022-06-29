@@ -12,6 +12,9 @@ RUN apt-get update && \
 # set the working directory in the container
 WORKDIR /code
 
+# copy the content of the local src directory to the working directory
+COPY src/ .
+
 # copy the dependencies file to the working directory
 COPY requirements.txt .
 
