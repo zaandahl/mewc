@@ -14,6 +14,7 @@ ENV PYTHONPATH "${PYTHONPATH}:/code/cameratraps:/code/ai4eutils:/code/yolov5"
 
 # download the megadetector model
 RUN wget -O /code/md_v5a.0.0.pt https://github.com/microsoft/CameraTraps/releases/download/v5.0/md_v5a.0.0.pt
+RUN wget -O /code/md_v5b.0.0.pt https://github.com/microsoft/CameraTraps/releases/download/v5.0/md_v5b.0.0.pt
 
 # copy the content of the local src directory to the working directory
 COPY src/ .
