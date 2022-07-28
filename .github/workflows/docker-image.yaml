@@ -41,6 +41,7 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
+        if: ${{ github.ref_type == 'tag' }}
         with:
           context: ./docker_code/
           file: ./docker_code/mewc_flow.dockerfile
