@@ -42,8 +42,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: /docker_code/
-          file: mewc_flow.dockerfile
+          context: ./docker_code/
+          file: ./docker_code/mewc_flow.dockerfile
           push: ${{ github.event.base_ref =='refs/heads/main' && github.ref_type == 'tag' && !startsWith(github.ref, 'refs/tags/v0.')}}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
