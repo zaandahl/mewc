@@ -5,8 +5,8 @@ FROM zaandahl/mewc_torch:latest
 WORKDIR /code
 
 # clone megadetector repos
-RUN git clone --depth 1 https://github.com/Microsoft/cameratraps
-RUN git clone --depth 1 https://github.com/Microsoft/ai4eutils
+RUN git clone --depth 1 -b v5.0 https://github.com/Microsoft/cameratraps
+RUN git clone --depth 1 -b v5.0 https://github.com/Microsoft/ai4eutils
 RUN git clone --depth 1 https://github.com/ultralytics/yolov5/
 #RUN cd /code/yolov5
 #RUN git checkout c23a441c9df7ca9b1f275e8c8719c949269160d1
