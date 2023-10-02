@@ -20,11 +20,28 @@ This Docker image contains the MegaDetector models md_v4.1.0.pb, md_v5a.0.0.pt a
 
 This Docker image is used to snip and save detections from a MegaDetector output JSON file and the original camera trap images.
 
+[**mewc-train**](https://github.com/zaandahl/mewc-train)
+
+This Docker image is used to train an EfficientNetV2 model using the TensorFlow Object Detection API. It is based on TensorFlow, CUDA and CUDNN8. The container is configured to use a GPU if available. 
+
+[**mewc-predict**](https://github.com/zaandahl/mewc-predict)
+
+This Docker image is used to predict the class of camera trap images using an EfficientNetV2 model. It is based on TensorFlow, CUDA and CUDNN8. The container is configured to use a GPU if available. 
+
+[**mewc-exif**](https://github.com/zaandahl/mewc-exif)
+
+This Docker image is used to write the class of camera trap images to the EXIF metadata. This is useful for sorting images based on class in camertrap database programs like Camelot.
 
 [**mewc-box**](https://github.com/zaandahl/mewc-box)
 
-This Docker image is used to draw bounding boxes on camera trap images using detections from a MegaDetector output JSON file.
+This Docker image is used to draw bounding boxes on camera trap images using detections from a MegaDetector output JSON file. Additionally it will sort the original camera trap images into folders based on the MegaDetector detection type (human, animal, vehicle, blank). 
 
+## Docker Base Images
+The base images are used to build the Docker images above. They are not intended to be used directly. 
+
+[**mewc-flow**](https://github.com/zaandahl/mewc-flow)
+
+A Docker base image that include TensorFlow, CUDA and CUDNN. It is used for EfficientNetV2 training and inference.
 
 [**mewc-torch**](https://github.com/zaandahl/mewc-torch)
 
