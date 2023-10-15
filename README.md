@@ -11,10 +11,9 @@ The Docker images are automatically built and pushed to [Docker Hub](https://hub
 ## Docker Source Code
 The source code below is unecessary if you just want to use the images. You can simply pull them from Docker Hub and use or modify one of the example scripts.
 
-[**megadetector**](https://github.com/zaandahl/megadetector)
+[**mewc-detect**](https://github.com/zaandahl/mewc-detect)
 
 This Docker image contains the MegaDetector models md_v4.1.0.pb, md_v5a.0.0.pt and md_v5b.0.0.pt and is based on PyTorch 1.11.0, CUDA 11.3 and CUDNN8. Additionally it has TensorFlow to support MD4.1 and GPU support.
-
 
 [**mewc-snip**](https://github.com/zaandahl/mewc-snip)
 
@@ -46,3 +45,12 @@ A Docker base image that include TensorFlow, CUDA and CUDNN. It is used for Effi
 [**mewc-torch**](https://github.com/zaandahl/mewc-torch)
 
 A Docker base image to suppor the MegaDetector Docker image. It also supports mewc-snip and mewc-box which use the MegaDetector utility libraries. 
+
+## Docker Infrastrcture Ultilities
+These Docker images are intended to be used as a toolset for building infrastructure in the cloud. You need to clone the repository and build the images locally as the code is directly used for Terraform plans and Ansible playbooks. 
+
+[**mewc-infrastructure**](https://github.com/zaandahl/mewc-infrastructure)
+
+A Docker image that contains Terraform, Ansible and OpenStack for Nectar Research Cloud infrastructure deployment. You will need to carefully read the README.md file in the repository to understand how to use this image.
+
+
