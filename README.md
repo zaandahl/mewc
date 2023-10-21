@@ -1,3 +1,5 @@
+<img src="mewc_logo_hex.png" alt="MEWC Hex Sticker" width="200" align="right"/>
+
 # MEWC - Mega Efficient Wildlife Classifier
 
 ## Introduction
