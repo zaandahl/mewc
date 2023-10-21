@@ -55,4 +55,10 @@ These Docker images are intended to be used as a toolset for building infrastruc
 
 A Docker image that contains Terraform, Ansible and OpenStack for Nectar Research Cloud infrastructure deployment. You will need to carefully read the README.md file in the repository to understand how to use this image.
 
+## Logo Attributes
+
+<a href="https://www.vecteezy.com/free-vector/camera-trap">Camera Trap Vectors by Vecteezy</a>
+
+Vectors and icons by <a href="https://github.com/DiemenDesign/LibreICONS?ref=svgrepo.com" target="_blank">Diemen Design</a> in MIT License via <a href="https://www.svgrepo.com/" target="_blank">SVG Repo</a>
+
 
