@@ -51,7 +51,7 @@
    ```bash
    cp ./train/data/output/class_list.yaml ./predict/
    cp ./train/data/output/mewc_model_300px_final.h5 ./predict
-   docker pull zaandahl/mewc-detector; docker pull zaandahl/mewc-snip; docker pull zaandahl/mewc-predict; docker pull zaandahl/mewc-exif; docker pull zaandahl/mewc-box
+   docker pull zaandahl/mewc-detect; docker pull zaandahl/mewc-snip; docker pull zaandahl/mewc-predict; docker pull zaandahl/mewc-exif; docker pull zaandahl/mewc-box
    cd predict
    ```
 
