@@ -4,6 +4,21 @@
 
 1. Provision a Nectar A100 GPU cloud instance or use your local GPU machine. Scripts for Nectar cloud setup can be found at [MEWC Infrastructure](https://github.com/zaandahl/mewc-infrastructure).
 
+## A Note About Running Docker as Root
+By default the Docker daemon always runs as the root user. If you are using the Nectar cloud, this is not a problem as you can use the following command to become root:
+
+```bash
+$ sudo su - root
+```
+
+Alternatively you can run the Docker containers as the ubuntu user by prefixing the following command to each Docker run command:
+
+```bash
+$ docker run --user $(id -u ubuntu):$(id -g ubuntu) --env MPLCONFIGDIR=/tmp/matplotlib
+```
+
+The MPLCONFIGDIR environment variable is required to prevent a warning message from being displayed when running the Docker containers as the ubuntu user. If you choose to run as the ubuntu user all the files created by the containers will be owned by ubuntu and you shouldn't run into any permission issues.
+
 ## Retrieve and Unpack the Dataset
 
 1. Data can be obtained from the [UTAS Datastore](https://rdp.utas.edu.au/metadata/3a2d9dcf-f8fa-4514-aab0-b9d36f5a1983). For this example, training and service data are extracted using tar under `/mnt/mewc-volume/train/` and `/mnt/mewc-volume/predict` respectively.
