@@ -29,7 +29,7 @@ This Docker image is used to snip and save detections from a MegaDetector output
 
 [**mewc-train**](https://github.com/zaandahl/mewc-train)
 
-This Docker image is used to train an EfficientNetV2 model using the TensorFlow Object Detection API. It is based on TensorFlow, CUDA and CUDNN8. The container is configured to use a GPU if available. 
+This Docker image is used to train an EfficientNetV2 model. It is based on TensorFlow, CUDA and CUDNN8. The container is configured to use a GPU if available. 
 
 [**mewc-predict**](https://github.com/zaandahl/mewc-predict)
 
