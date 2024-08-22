@@ -7,7 +7,7 @@ This code repository contains example scripts for camera trap animal detection a
 
 ## Version 2 Updates
 
-The base image [**mewc-flow**]((https://github.com/zaandahl/mewc-flow) has been upgraded to `tensorflow/tensorflow:2.16.1-gpu` with CUDA, cuDNN and JAX support. This change has allowed a substantial upgrade to [**mewc-train**]((https://github.com/zaandahl/mewc-train) and [**mewc-predict**]((https://github.com/zaandahl/mewc-predict). Please visit the GitHub pages for these applications to see details about these changes. Older versions are still available with 1.0.x version tags.
+The base image [**mewc-flow**](https://github.com/zaandahl/mewc-flow) has been upgraded to `tensorflow/tensorflow:2.16.1-gpu` with CUDA, cuDNN and JAX support. This change has allowed a substantial upgrade to [**mewc-train**](https://github.com/zaandahl/mewc-train) and [**mewc-predict**](https://github.com/zaandahl/mewc-predict). Please visit the GitHub pages for these applications to see details about these changes. Older versions are still available with 1.0.x version tags.
 
 ## Quick Start Vignette
 We have provided a [Quick Start Vignette](./vignette.md) that will guide you through the process of pulling necessary Docker images, training an EfficientNetV2 model using 10 species of Tasmanian animals and then using the trained model for inference to classify camera trap images from an example camera service. The entire process can be completed in an afternoon on a NVIDIA A100 Cloud GPU instance with the majority of that time devoted to training the classifier. 
