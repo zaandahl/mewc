@@ -1,17 +1,18 @@
-# Run MEWC red-box writer and folder sort on a service, recursing through all subdirectories that contain image files
+# Run MEWC on a Service, recursing through all subdirectories that contain image files
 
 param (
   [string]$i = ".\",
   [string]$p = ".\"
 )
 
-$SERVICE_DIR = $i | Resolve-Path
-$PARAM_ENV = $p | Resolve-Path
+$SERVICE_DIR = (Resolve-Path -Path $i) | Convert-Path
+$PARAM_ENV = (Resolve-Path -Path $p) | Convert-Path
 
 Function MEWC_SCRIPT {
   Param($IN_DIR, $PARAMS)
-  docker run --interactive --tty --rm --env-file ${PARAMS} --volume ''$IN_DIR':/images' zaandahl/mewc-box
-  #docker run --interactive --tty --rm --env-file ${PARAMS} --volume ''$IN_DIR':/images' zaandahl/mewc-box:1.0.2
+  Write-Host "Site Directory: $IN_DIR"
+  $docker_box = "docker run --env-file $PARAMS --interactive --tty --rm --volume `"${IN_DIR}:/images`" zaandahl/mewc-box"
+  Invoke-Expression $docker_box
 }
 
 docker pull zaandahl/mewc-box
@@ -25,4 +26,4 @@ $folders |
 	}
 
 # Example call:
-# C:\mewc\ps\mewc_run_box.ps1 -i C:\example -p C:\mewc\model\params.env
+# C:\mewc\ps\mewc_run_box.ps1 -i C:\service -p C:\mewc\model\params.env

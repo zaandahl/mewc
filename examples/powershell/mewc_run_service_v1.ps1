@@ -22,7 +22,7 @@ Function MEWC_SCRIPT {
   $docker_snip = "docker run --env-file $PARAMS --interactive --tty --rm --volume `"${IN_DIR}:/images`" zaandahl/mewc-snip"
   Invoke-Expression $docker_snip
 
-  $docker_predict = "docker run --env CUDA_VISIBLE_DEVICES=$g --env-file $PARAMS --gpus all --interactive --tty --rm --volume `"${IN_DIR}:/images`" --mount type=bind,source=$MODEL,target=/code/model.keras --mount type=bind,source=$CL,target=/code/class_map.yaml zaandahl/mewc-predict"
+  $docker_predict = "docker run --env CUDA_VISIBLE_DEVICES=$g --env-file $PARAMS --gpus all --interactive --tty --rm --volume `"${IN_DIR}:/images`" --mount type=bind,source=$MODEL,target=/code/model.h5 --mount type=bind,source=$CL,target=/code/class_list.yaml zaandahl/mewc-predict:1.0.11"
   Invoke-Expression $docker_predict
 
   $docker_exif = "docker run --env-file $PARAMS --interactive --tty --rm --volume `"${IN_DIR}:/images`" zaandahl/mewc-exif"
@@ -34,7 +34,7 @@ Function MEWC_SCRIPT {
 
 docker pull zaandahl/mewc-detect
 docker pull zaandahl/mewc-snip
-docker pull zaandahl/mewc-predict
+docker pull zaandahl/mewc-predict:1.0.11
 docker pull zaandahl/mewc-exif
 docker pull zaandahl/mewc-box
 
@@ -47,4 +47,4 @@ $folders |
 	}
 
 # Example call, for GPU-0: 
-# C:\mewc\ps\mewc_run_service.ps1 -i E:\service -p C:\mewc\model\params.env -c C:\mewc\yaml\class_map.yaml -m C:\mewc\model\ens_mewc_case_study.keras -g 0
+# C:\mewc\ps\mewc_run_service.ps1 -i C:\service -p C:\mewc\model\params.env -c C:\mewc\yaml\class_map.yaml -m C:\mewc\model\ens_mewc_case_study.keras -g 0
