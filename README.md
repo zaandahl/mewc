@@ -5,13 +5,15 @@
 ## Introduction
 This code repository contains example scripts for camera trap animal detection and classification. Our container based approach to camera trap image processing is modular, easily scalable, fast to deploy and reduces system prerequisites. Developed by RZA, JCB and BWB.
 
+## Version 2 Updates
+
+The base image [**mewc-flow**](https://github.com/zaandahl/mewc-flow) has been upgraded to `tensorflow/tensorflow:2.16.1-gpu` with CUDA, cuDNN and JAX support. This change has allowed a substantial upgrade to [**mewc-train**](https://github.com/zaandahl/mewc-train) and [**mewc-predict**](https://github.com/zaandahl/mewc-predict). Please visit the GitHub pages for these applications to see details about these changes. Older versions are still available with 1.0.x version tags.
+
 ## Quick Start Vignette
 We have provided a [Quick Start Vignette](./vignette.md) that will guide you through the process of pulling necessary Docker images, training an EfficientNetV2 model using 10 species of Tasmanian animals and then using the trained model for inference to classify camera trap images from an example camera service. The entire process can be completed in an afternoon on a NVIDIA A100 Cloud GPU instance with the majority of that time devoted to training the classifier. 
 
 ## Example Scripts
 The /examples directory contains command line scripts that can be run on an appropriate system. The scripts pull a Docker image from Docker Hub and then perform the processing on your camera trap image folder. For GPU support you need to use a current version of Linux or Windows 10/11. There are individual scripts to run each of the Docker images and a single script that will run all of the Docker images in sequence over a camera trap service. We provide example scripts for both Linux/Mac and Windows 10/11. You can find the bash scripts [here](./examples/bash/) and the PowerShell scripts [here](./examples/powershell/).
-
-
 
 ## Docker Hub Images
 The Docker images are automatically built and pushed to [Docker Hub](https://hub.docker.com) using GitHub Actions for CI/CD. We adhere to [Semantic Versioning 2.0.0](https://semver.org) and maintain version consistency bewtween GitHub and Docker Hub tags. 
