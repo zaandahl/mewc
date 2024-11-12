@@ -1,33 +1,20 @@
-# Run MEWC-classifier-inference on a Service, recursing through all subdirectories that contain image files
+# PowerShell call example:
+# In this example, the system has a single GPU (CUDA_VISIBLE_DEVICES=0) and the host directory C:\mewc_train\ is mounted to the container directory /data
+# In this case, training data should be placed in the host directory, e.g., C:\mewc_train\train and the test data in C:\mewc_train\test
+# The training and test data (pre-sorted snips) should be in the format of a directory with named subdirectories for each class containing their images
 
 param (
-  [string]$i = ".\",
+  [string]$d = ".\",
   [string]$p = ".\",
-  [string]$c = ".\",
-  [string]$m = ".\",
   [string]$g = ".\"
 )
 
-$SERVICE_DIR = (Resolve-Path -Path $i) | Convert-Path
+$DATA_DIR = (Resolve-Path -Path $d) | Convert-Path
 $PARAM_ENV = (Resolve-Path -Path $p) | Convert-Path
-$CLASS = (Resolve-Path -Path $c) | Convert-Path
-$MEWC_MODEL = (Resolve-Path -Path $m) | Convert-Path
 
-Function MEWC_SCRIPT {
-  Param($IN_DIR, $PARAMS, $CL, $MODEL)
-  $docker_predict = "docker run --env CUDA_VISIBLE_DEVICES=$g --env-file $PARAMS --gpus all --interactive --tty --rm --volume `"${IN_DIR}:/images`" --mount type=bind,source=$MODEL,target=/code/model.keras --mount type=bind,source=$CL,target=/code/class_map.yaml zaandahl/mewc-predict"
-  Invoke-Expression $docker_predict
-}
-
-docker run --env CUDA_VISIBLE_DEVICES=0 --gpus all --env-file params.env --volume /mnt/mewc-volume/train/data:/data zaandahl/mewc-train
-
-$folders = gci $SERVICE_DIR -recurse -force | 
-  where-object { $_.PSIsContainer -and ($_.GetFiles().Name -imatch '.jpg') -and (($_.GetFiles().Count -gt 0)) -and ($_.Name -notmatch '^(animal|blank|human|snips)$') }
-
-$folders | 
-	ForEach-Object {
-        MEWC_SCRIPT "$($_.FullName)" $PARAM_ENV $CLASS $MEWC_MODEL
-	}
+docker pull zaandahl/mewc-train
+docker run --env CUDA_VISIBLE_DEVICES=$g --gpus all --env-file $PARAM_ENV --volume ${DATA_DIR}:/data zaandahl/mewc-train
 
 # Example call, for GPU-0: 
-# C:\mewc\ps\mewc_run_train.ps1 -i C:\service -p C:\mewc\model\params.env -c C:\mewc\yaml\class_map.yaml -m C:\mewc\model\ens_mewc_case_study.keras -g 0
+# C:\mewc\ps\mewc_run_train.ps1 -d C:\mewc_train -p C:\mewc\env\train_params.env -g 0
+

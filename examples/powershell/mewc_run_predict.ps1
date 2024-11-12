@@ -23,7 +23,7 @@ Function MEWC_SCRIPT {
 docker pull zaandahl/mewc-predict
 
 $folders = gci $SERVICE_DIR -recurse -force | 
-  where-object { $_.PSIsContainer -and ($_.GetFiles().Name -imatch '.jpg') -and (($_.GetFiles().Count -gt 0)) -and ($_.Name -notmatch '^(animal|blank|human|snips)$') }
+  where-object { $_.PSIsContainer -and ($_.GetFiles().Name -imatch '\.json$') -and (($_.GetFiles().Count -gt 0)) -and ($_.Name -notmatch '^(animal|blank|human|snips)$') }
 
 $folders | 
 	ForEach-Object {
@@ -31,4 +31,4 @@ $folders |
 	}
 
 # Example call, for GPU-0:
-# C:\mewc\ps\mewc_run_infer.ps1 -i C:\service -p C:\mewc\model\params.env -c C:\mewc\yaml\class_map.yaml -m C:\mewc\model\ens_mewc_case_study.keras -g 0
+# C:\mewc\ps\mewc_run_predict.ps1 -i C:\service -p C:\mewc\env\params.env -c C:\mewc\yaml\class_map.yaml -m C:\mewc\model\ens_mewc_case_study.keras -g 0

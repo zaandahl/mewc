@@ -18,7 +18,7 @@ Function MEWC_SCRIPT {
 docker pull zaandahl/mewc-exif
 
 $folders = gci $SERVICE_DIR -recurse -force | 
-	where-object { $_.PSIsContainer -and ($_.GetFiles().Name -imatch '.jpg') -and (($_.GetFiles().Count -gt 0)) -and ($_.Name -notmatch '^(animal|blank|human|snips)$') }
+	where-object { $_.PSIsContainer -and ($_.GetFiles().Name -imatch '\.jpg$') -and (($_.GetFiles().Count -gt 0)) -and ($_.Name -notmatch '^(animal|blank|human|snips)$') }
 
 $folders | 
 	ForEach-Object {
@@ -26,4 +26,4 @@ $folders |
 	}
 
 # Example call:
-# C:\mewc\ps\mewc_run_exif.ps1 -i C:\service -p C:\mewc\model\params.env
+# C:\mewc\ps\mewc_run_exif.ps1 -i C:\service -p C:\mewc\env\params.env

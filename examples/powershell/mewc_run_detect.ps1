@@ -18,11 +18,11 @@ Function MEWC_SCRIPT {
 docker pull zaandahl/mewc-detect
 
 $folders = Get-ChildItem $SERVICE_DIR -Recurse -Force | 
-  Where-Object { $_.PSIsContainer -and ($_.GetFiles().Name -match '.jpg') -and ($_.GetFiles().Count -gt 0) -and ($_.Name -notmatch '^(animal|blank|human|snips)$') }
+  Where-Object { $_.PSIsContainer -and ($_.GetFiles().Name -imatch '\.jpg$') -and ($_.GetFiles().Count -gt 0) -and ($_.Name -notmatch '^(animal|blank|human|snips)$') }
 
 $folders | ForEach-Object {
     MEWC_SCRIPT "$($_.FullName)" $PARAM_ENV
 }
 
 # Example call: 
-# C:\mewc\ps\mewc_run_detect.ps1 -i C:\service -p C:\mewc\model\params.env -g 0 
+# C:\mewc\ps\mewc_run_detect.ps1 -i C:\service -p C:\mewc\env\params.env -g 0 

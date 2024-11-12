@@ -39,7 +39,7 @@ docker pull zaandahl/mewc-exif
 docker pull zaandahl/mewc-box
 
 $folders = gci $SERVICE_DIR -recurse -force | 
-	where-object { $_.PSIsContainer -and ($_.GetFiles().Name -imatch '.jpg') -and (($_.GetFiles().Count -gt 0)) -and ($_.Name -notmatch '^(animal|blank|human|snips)$') }
+	where-object { $_.PSIsContainer -and ($_.GetFiles().Name -imatch '\.jpg$') -and (($_.GetFiles().Count -gt 0)) -and ($_.Name -notmatch '^(animal|blank|human|snips)$') }
 
 $folders | 
 	ForEach-Object {
