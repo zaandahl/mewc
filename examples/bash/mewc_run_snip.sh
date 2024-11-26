@@ -12,18 +12,22 @@ PARAM_ENV=$(realpath "$PARAM_ENV")
 mewc_script() {
   local in_dir=$1
   local params=$2
-  docker run --interactive --tty --rm --env-file "${params}" --volume "${in_dir}:/images" zaandahl/mewc-snip
+  echo "Starting processing folder: $in_dir with params: $params"
+  docker run --env CUDA_VISIBLE_DEVICES="0" --env-file "${params}" --gpus all --interactive --rm --volume "${in_dir}:/images" zaandahl/mewc-snip
+  echo "Finished processing folder: $in_dir"
 }
 
 # Pull the Docker image
 docker pull zaandahl/mewc-snip
 
-# Find directories containing .jpg files, excluding specific names
-find "$SERVICE_DIR" -type d -not -path "*/animal/*" -not -path "*/blank/*" -not -path "*/human/*" -not -path "*/snips/*" | while read -r folder; do
-  if ls "$folder"/*.jpg 1> /dev/null 2>&1; then
-    mewc_script "$folder" "$PARAM_ENV"
-  fi
-done
+# Collect directories into an array
+folders=($(find "$SERVICE_DIR" -type d -not -path "*/animal/*" -not -path "*/blank/*" -not -path "*/human/*" -not -path "*/snips/*"))
 
-# Usage example:
-# ./mewc_run_snip.sh /path/to/example /path/to/params.env
+# Iterate over the collected directories
+for folder in "${folders[@]}"; do
+    if ls "$folder"/*.[jJ][pP][gG] 1> /dev/null 2>&1 && [ -f "$folder/md_out.json" ]; then
+        mewc_script "$folder" "$PARAM_ENV"
+    else
+        echo "Skipping $folder (missing '.jpg' files or 'md_out.json')"
+    fi
+done
