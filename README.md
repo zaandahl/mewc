@@ -45,9 +45,9 @@ This Docker image is used to write the class of camera trap images to the EXIF m
 
 This Docker image is used to draw bounding boxes on camera trap images using detections from a MegaDetector output JSON file. Additionally it will sort the original camera trap images into folders based on the MegaDetector detection type (human, animal, vehicle, blank). 
 
-[**mewc-table**](https://github.com/BWBrook/mewc-table))
+[**mewc-table**](https://github.com/BWBrook/mewc-table)
 
-A streamlined, Docker-driven workflow for post-processing AI-classified wildlife camera trap data from MEWC. This repository provides tools to integrate automated AI detection with human expertise, facilitating the refinement and analysis of species classification and camera-trap metadata.
+A streamlined, Docker-driven workflow for post-processing AI-classified wildlife camera trap data following processing by the MEWC system. This repository provides tools to integrate automated AI detection with human expertise, facilitating the refinement and analysis of species classification and camera-trap metadata, and for generating a consolidated service and site-attributes table.
 
 ## Docker Base Images
 The base images are used to build the Docker images above. They are not intended to be used directly. 
