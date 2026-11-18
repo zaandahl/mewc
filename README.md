@@ -16,7 +16,7 @@ We have provided a [Quick Start Vignette](./vignette.md) that will guide you thr
 The /examples directory contains command line scripts that can be run on an appropriate system. The scripts pull a Docker image from Docker Hub and then perform the processing on your camera trap image folder. For GPU support you need to use a current version of Linux or Windows 10/11. There are individual scripts to run each of the Docker images and a single script that will run all of the Docker images in sequence over a camera trap service. We provide example scripts for both Linux/Mac and Windows 10/11. You can find the bash scripts [here](./examples/bash/) and the PowerShell scripts [here](./examples/powershell/).
 
 ## Docker Hub Images
-The Docker images are automatically built and pushed to [Docker Hub](https://hub.docker.com) using GitHub Actions for CI/CD. We adhere to [Semantic Versioning 2.0.0](https://semver.org) and maintain version consistency bewtween GitHub and Docker Hub tags. 
+The Docker images are automatically built and pushed to [Docker Hub](https://hub.docker.com) using GitHub Actions for CI/CD. We adhere to [Semantic Versioning 2.0.0](https://semver.org) and maintain version consistency between GitHub and Docker Hub tags. 
 
 ## Docker Source Code
 The source code below is unnecessary if you just want to use the images. You can simply pull them from Docker Hub and use or modify one of the example scripts.
@@ -39,7 +39,7 @@ This Docker image is used to predict the class of camera trap images using an Ef
 
 [**mewc-exif**](https://github.com/zaandahl/mewc-exif)
 
-This Docker image is used to write the class of camera trap images to the EXIF metadata. This is useful for sorting images based on class in camertrap database programs like Camelot.
+This Docker image is used to write the class of camera trap images to the EXIF metadata. This is useful for sorting images based on class in cameratrap database programs like Camelot.
 
 [**mewc-box**](https://github.com/zaandahl/mewc-box)
 
@@ -60,7 +60,7 @@ A Docker base image that include TensorFlow, CUDA and CUDNN. It is used for Effi
 
 A Docker base image to support the MegaDetector Docker image. It also supports mewc-snip and mewc-box which use the MegaDetector utility libraries. 
 
-## Docker Infrastrcture Ultilities
+## Docker Infrastructure Utilities
 These Docker images are intended to be used as a toolset for building infrastructure in the cloud. You need to clone the repository and build the images locally as the code is directly used for Terraform plans and Ansible playbooks. 
 
 [**mewc-infrastructure**](https://github.com/zaandahl/mewc-infrastructure)
